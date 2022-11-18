@@ -2,6 +2,8 @@
 {% load static %}
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,6 +39,7 @@
     </style>
 </head>
 <body>
+    
  <h1>"PROTEITM--> CARGUE SU ARCHIVO PDB"
     <form action="{% url 'Core:uploadFile' %}" method="POST" enctype="multipart/form-data">
         <input type="text" name="fileTitle" placeholder="Enter a title">
@@ -73,12 +76,27 @@
         </script> 
         </head>
         
+        <div id="vis"></div>
         
+        <button onclick="">Abrir visualizador</button>
         
-        <input type="Button" value="OpenCalc" onclick="javascript:shell('vmd.exe');">
+ 
+            <py-config type="json">
+                {
+                  "packages": ["numpy", "matplotlib", "vispy", "biopython", "tk", "pyqt5", "ddsp-wsl"]
+                }
+            </py-config>
+            <py-script output="vis">
+              import matplotlib.pyplot as plt
+              import numpy as np
+              x = np.random.randn(1000)
+              y = np.random.randn(1000)
+              fig, ax = plt.subplots()
+              ax.scatter(x, y)
+              fig
+            </py-script>
+         
         
-    
-    </html>
         
         
     
